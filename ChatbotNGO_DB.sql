@@ -457,10 +457,23 @@ DROP TABLE IF EXISTS `Keywords`;
 CREATE TABLE `Keywords` (
   `EntityKeywordID` int(11) NOT NULL AUTO_INCREMENT,
   `KeywordType` varchar(50) NOT NULL,
-  `EntityID` int(11) NOT NULL,
+  `EntityID` varchar(50) NOT NULL,
   `KeywordSet` varchar(300) NOT NULL,
   PRIMARY KEY (`EntityKeywordID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+
+INSERT INTO `Keywords` (`EntityKeywordID`, `KeywordType`, `EntityID`, `KeywordSet`) VALUES (1, 'Staff', 'UserID', '');
+INSERT INTO `Keywords` (`EntityKeywordID`, `KeywordType`, `EntityID`, `KeywordSet`) VALUES (2, 'ActionPlan', 'ActionPlanID', '');
+INSERT INTO `Keywords` (`EntityKeywordID`, `KeywordType`, `EntityID`, `KeywordSet`) VALUES (3, 'ActivityEventParticipant', 'Activity_EventID', '');
+INSERT INTO `Keywords` (`EntityKeywordID`, `KeywordType`, `EntityID`, `KeywordSet`) VALUES (4, 'Users', 'UserID', 'name,email');
+INSERT INTO `Keywords` (`EntityKeywordID`, `KeywordType`, `EntityID`, `KeywordSet`) VALUES (5, 'Donations', 'DonationID', '');
+INSERT INTO `Keywords` (`EntityKeywordID`, `KeywordType`, `EntityID`, `KeywordSet`) VALUES (6, 'Member', 'UserID', '');
+INSERT INTO `Keywords` (`EntityKeywordID`, `KeywordType`, `EntityID`, `KeywordSet`) VALUES (7, 'Projects', 'ProjectID', '');
+INSERT INTO `Keywords` (`EntityKeywordID`, `KeywordType`, `EntityID`, `KeywordSet`) VALUES (8, 'Payments', 'PaymentID', '');
+INSERT INTO `Keywords` (`EntityKeywordID`, `KeywordType`, `EntityID`, `KeywordSet`) VALUES (9, 'StaffRole', 'RoleID', '');
+INSERT INTO `Keywords` (`EntityKeywordID`, `KeywordType`, `EntityID`, `KeywordSet`) VALUES (9, 'NGO', 'NGO_ID', '');
+INSERT INTO `Keywords` (`EntityKeywordID`, `KeywordType`, `EntityID`, `KeywordSet`) VALUES (9, 'NGOInformation', 'NGO_ID', '');
+
 
 #
 # TABLE STRUCTURE FOR: Member
