@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 07, 2020 at 09:00 AM
+-- Generation Time: Feb 08, 2020 at 12:12 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -632,8 +632,14 @@ CREATE TABLE `ngoinformation` (
 --
 
 INSERT INTO `ngoinformation` (`NGO_ID`, `InformationTitle`, `InformantUserID`, `InformationText`) VALUES
-(1, 'Sequi sit commodi cumque nesciunt ea corporis.', 139, 'She soon got it out to sea!\" But the snail replied \"Too far, too far!\" and gave a sudden burst of tears, until there was enough of it now in sight, and no one else seemed inclined to say but \'It.'),
-(2, 'In voluptas deleniti sed similique minus et repellendus ut.', 80, 'Cat, and vanished. Alice was very likely true.) Down, down, down. There was no \'One, two, three, and away,\' but they were nowhere to be lost: away went Alice after it, never once considering how in.');
+(1, 'Goal', 139, 'To promote improved mechanism of achieving programme targets.\r\n'),
+(2, 'Objectives', 80, 'The objective of the CRERD is to engage in research and evaluation training in the areas of Population, Health systems and Environment in Africa particularly in Nigeria.'),
+(3, 'Specific Focus', 1, 'The CRERD specific focus in the areas of applied Population, Health Systems and Environmental research and training workshops includes the fol lowing .'),
+(4, 'email', 1, 'info@crerd.org'),
+(5, 'website', 1, 'www.crerd.org'),
+(6, 'Contact Phone 1', 1, '+2348136174697'),
+(7, 'who we are', 1, 'Centre for Research, Evaluation Resources and Development (CRERD) is a non-profit, non­ governmental organization concerned with improving the understanding and delivery of population and health services and environmental development in Nigeria and other countries in Africa. The organization is an outgrowth of the Operations Research Unit and Network, Obafemi Awolowo University, lIe-lfe, sponsored by The Population Council of New York, U.S.A. for a period of four years.'),
+(8, 'Contact Phone 2', 1, '+2347033350717');
 
 -- --------------------------------------------------------
 
@@ -1315,7 +1321,7 @@ ALTER TABLE `ngo`
 -- AUTO_INCREMENT for table `ngoinformation`
 --
 ALTER TABLE `ngoinformation`
-  MODIFY `NGO_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `NGO_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `payments`
 --
