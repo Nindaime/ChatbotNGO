@@ -116,7 +116,6 @@ INSERT INTO `ActionPlan` (`ActionPlanID`, `ActivityName`, `Duration`, `UserID`, 
 INSERT INTO `ActionPlan` (`ActionPlanID`, `ActivityName`, `Duration`, `UserID`, `ScheduleDate`) VALUES (99, 'Assimilated context-sensitive functionalities', '3 hours', 71, '1970-05-01');
 INSERT INTO `ActionPlan` (`ActionPlanID`, `ActivityName`, `Duration`, `UserID`, `ScheduleDate`) VALUES (100, 'Ergonomic asynchronous forecast', '4 hours', 29, '1974-12-03');
 
-
 #
 # TABLE STRUCTURE FOR: ActivityEvent
 #
@@ -246,7 +245,6 @@ INSERT INTO `ActivityEvent` (`Activity_EventID`, `ProjectID`, `Type`, `Title`, `
 INSERT INTO `ActivityEvent` (`Activity_EventID`, `ProjectID`, `Type`, `Title`, `NGO_ID`, `CreatorUserID`, `Description`, `Status`, `Location`, `ActionPlainID`) VALUES (99, 60, 'In house', 'User-friendly motivating localareanetwork', 2, 37, 'I\'ve fallen by this time.) \'You\'re nothing but the wise little Alice herself, and nibbled a little of it?\' said the Footman, and began singing in its hurry to change the subject. \'Go on with the.', 'Completed', '712 Laron Terrace\nPort Ubaldomouth, DC 43959-2920', 100);
 INSERT INTO `ActivityEvent` (`Activity_EventID`, `ProjectID`, `Type`, `Title`, `NGO_ID`, `CreatorUserID`, `Description`, `Status`, `Location`, `ActionPlainID`) VALUES (100, 32, 'Outsource', 'Total fault-tolerant firmware', 4, 120, 'Mock Turtle angrily: \'really you are very dull!\' \'You ought to have changed since her swim in the distance. \'Come on!\' cried the Mouse, frowning, but very glad to do THAT in a VERY turn-up nose,.', 'Pending', '878 Briana Lake\nLake Marielleview, NY 02948-7656', 44);
 
-
 #
 # TABLE STRUCTURE FOR: ActivityEventParticipant
 #
@@ -336,7 +334,6 @@ INSERT INTO `ActivityEventParticipant` (`Activity_EventID`, `ParticipantUserID`)
 INSERT INTO `ActivityEventParticipant` (`Activity_EventID`, `ParticipantUserID`) VALUES (50, 165);
 INSERT INTO `ActivityEventParticipant` (`Activity_EventID`, `ParticipantUserID`) VALUES (8, 166);
 INSERT INTO `ActivityEventParticipant` (`Activity_EventID`, `ParticipantUserID`) VALUES (18, 169);
-
 
 #
 # TABLE STRUCTURE FOR: Donations
@@ -454,7 +451,6 @@ INSERT INTO `Donations` (`DonationID`, `Context`, `Title`, `PaymentID`) VALUES (
 INSERT INTO `Donations` (`DonationID`, `Context`, `Title`, `PaymentID`) VALUES (98, '', 'maximize virtual vortals', 141);
 INSERT INTO `Donations` (`DonationID`, `Context`, `Title`, `PaymentID`) VALUES (99, '', 'aggregate robust paradigms', 197);
 INSERT INTO `Donations` (`DonationID`, `Context`, `Title`, `PaymentID`) VALUES (100, '', 'revolutionize cross-media experiences', 256);
-
 
 #
 # TABLE STRUCTURE FOR: Keywords
@@ -686,7 +682,6 @@ INSERT INTO `Member` (`MemberID`, `Title`, `NGO_ID`) VALUES (198, 'Dr. Colten Wa
 INSERT INTO `Member` (`MemberID`, `Title`, `NGO_ID`) VALUES (199, 'Octavia Wisozk', 48);
 INSERT INTO `Member` (`MemberID`, `Title`, `NGO_ID`) VALUES (200, 'Viola Satterfield', 25);
 
-
 #
 # TABLE STRUCTURE FOR: NGO
 #
@@ -749,7 +744,6 @@ INSERT INTO `NGO` (`NGO_ID`, `NGO_Name`) VALUES (47, 'Universal static service-d
 INSERT INTO `NGO` (`NGO_ID`, `NGO_Name`) VALUES (48, 'Right-sized object-oriented collaboration');
 INSERT INTO `NGO` (`NGO_ID`, `NGO_Name`) VALUES (49, 'Grass-roots didactic superstructure');
 INSERT INTO `NGO` (`NGO_ID`, `NGO_Name`) VALUES (50, 'Implemented foreground task-force');
-
 
 #
 # TABLE STRUCTURE FOR: NGOInformation
@@ -867,7 +861,6 @@ INSERT INTO `NGOInformation` (`NGO_ID`, `InformationTitle`, `InformantUserID`, `
 INSERT INTO `NGOInformation` (`NGO_ID`, `InformationTitle`, `InformantUserID`, `InformationText`) VALUES (98, 'Et ut ut eligendi adipisci repudiandae et.', 152, 'Alice had begun to dream that she never knew whether it would be quite as safe to stay in here any longer!\' She waited for a minute, nurse! But I\'ve got to the waving of the house, quite forgetting.');
 INSERT INTO `NGOInformation` (`NGO_ID`, `InformationTitle`, `InformantUserID`, `InformationText`) VALUES (99, 'Magni sed qui et sequi provident consequatur est laboriosam.', 25, 'March Hare. \'I didn\'t know how to spell \'stupid,\' and that he had come back and see how he can EVEN finish, if he doesn\'t begin.\' But she waited patiently. \'Once,\' said the Dodo, \'the best way you.');
 INSERT INTO `NGOInformation` (`NGO_ID`, `InformationTitle`, `InformantUserID`, `InformationText`) VALUES (100, 'Veniam sit id rerum.', 72, 'The Frog-Footman repeated, in the distance would take the roof was thatched with fur. It was all ridges and furrows; the balls were live hedgehogs, the mallets live flamingoes, and the King added in.');
-
 
 #
 # TABLE STRUCTURE FOR: Payments
@@ -1005,7 +998,6 @@ INSERT INTO `Payments` (`PaymentID`, `UserID`, `Amount`, `Status`, `ActivityEven
 INSERT INTO `Payments` (`PaymentID`, `UserID`, `Amount`, `Status`, `ActivityEventID`) VALUES (298, 87, '2278224', 'Paid', 3);
 INSERT INTO `Payments` (`PaymentID`, `UserID`, `Amount`, `Status`, `ActivityEventID`) VALUES (299, 66, '246', 'Paid', 5);
 
-
 #
 # TABLE STRUCTURE FOR: Projects
 #
@@ -1058,7 +1050,6 @@ INSERT INTO `Projects` (`ProjectID`, `Title`, `AmountRaised`, `AmountNeeded`, `P
 INSERT INTO `Projects` (`ProjectID`, `Title`, `AmountRaised`, `AmountNeeded`, `ProjectManagerID`) VALUES (195, 'Team-oriented scalable concept', '24', '9423', 102);
 INSERT INTO `Projects` (`ProjectID`, `Title`, `AmountRaised`, `AmountNeeded`, `ProjectManagerID`) VALUES (197, 'Profound needs-based data-warehouse', '2818909', '26491', 139);
 INSERT INTO `Projects` (`ProjectID`, `Title`, `AmountRaised`, `AmountNeeded`, `ProjectManagerID`) VALUES (200, 'Profit-focused methodical capability', '945946', '79946', 7);
-
 
 #
 # TABLE STRUCTURE FOR: Sponsor
@@ -1174,7 +1165,6 @@ INSERT INTO `Sponsor` (`UserID`, `NumberOfProjectContribution`, `NumberOfFullSpo
 INSERT INTO `Sponsor` (`UserID`, `NumberOfProjectContribution`, `NumberOfFullSponsorship`) VALUES (99, 411006257, 90933);
 INSERT INTO `Sponsor` (`UserID`, `NumberOfProjectContribution`, `NumberOfFullSponsorship`) VALUES (100, 199418, 976594);
 
-
 #
 # TABLE STRUCTURE FOR: Staff
 #
@@ -1267,7 +1257,6 @@ INSERT INTO `Staff` (`UserID`, `RoleID`) VALUES (114, 49);
 INSERT INTO `Staff` (`UserID`, `RoleID`) VALUES (137, 49);
 INSERT INTO `Staff` (`UserID`, `RoleID`) VALUES (51, 50);
 
-
 #
 # TABLE STRUCTURE FOR: StaffRole
 #
@@ -1291,7 +1280,6 @@ INSERT INTO `StaffRole` (`RoleID`, `Title`, `Description`) VALUES (7, 'integrate
 INSERT INTO `StaffRole` (`RoleID`, `Title`, `Description`) VALUES (8, 'benchmark scalable niches', 'I\'ve tried hedges,\' the Pigeon had finished. \'As if it makes me grow large again, for really I\'m quite tired and out of sight, he said in a low, hurried tone. He looked at it gloomily: then he.');
 INSERT INTO `StaffRole` (`RoleID`, `Title`, `Description`) VALUES (9, 'enhance dot-com partnerships', 'Alice replied, rather shyly, \'I--I hardly know, sir, just at first, the two creatures got so much contradicted in her own children. \'How should I know?\' said Alice, and her face like the tone of.');
 INSERT INTO `StaffRole` (`RoleID`, `Title`, `Description`) VALUES (10, 'productize sexy e-commerce', 'I dare say you never had fits, my dear, and that if something wasn\'t done about it in a day or two: wouldn\'t it be murder to leave off this minute!\' She generally gave herself very good advice,.');
-
 
 #
 # TABLE STRUCTURE FOR: Users
@@ -1484,4 +1472,3 @@ INSERT INTO `Users` (`UserID`, `MemberID`, `Username`, `Password`, `FirstName`, 
 INSERT INTO `Users` (`UserID`, `MemberID`, `Username`, `Password`, `FirstName`, `LastName`, `UserType`, `HostOnChatbot`, `NumberOfSignIn`) VALUES (168, 125, 'twalker', '34a5da8bcd2ff5410e30b1fca0d79b978c179561', 'Isaiah', 'Hamill', 'Sponsor', '09:06:59', 36);
 INSERT INTO `Users` (`UserID`, `MemberID`, `Username`, `Password`, `FirstName`, `LastName`, `UserType`, `HostOnChatbot`, `NumberOfSignIn`) VALUES (169, 108, 'nicholas55', '04064a0a0e80292eef02b0299afc7ac183a5b977', 'Lila', 'Stanton', 'Member', '08:43:19', 0);
 INSERT INTO `Users` (`UserID`, `MemberID`, `Username`, `Password`, `FirstName`, `LastName`, `UserType`, `HostOnChatbot`, `NumberOfSignIn`) VALUES (170, 34, 'vblick', '6035f2b4a5d2c339b505d86aeb51c0f04b197933', 'Colt', 'Satterfield', 'Sponsor', '19:24:52', 226938);
-
