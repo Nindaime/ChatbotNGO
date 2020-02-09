@@ -1,22 +1,24 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Users', {
-      
-      userId: {
+    return queryInterface.createTable('keywords', {
+      id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER(11).UNSIGNED
+        type: Sequelize.INTEGER
       },
-      firstName: {
-        type: Sequelize.STRING(30)
+      entityKeywordID: {
+        type: Sequelize.INTEGER
       },
-      lastName: {
-        type: Sequelize.STRING(30)
+      keywordType: {
+        type: Sequelize.STRING
       },
-      userType: {
-        type: Sequelize.ENUM('student', 'admin')
+      entityID: {
+        type: Sequelize.STRING
+      },
+      keywordSet: {
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
@@ -29,6 +31,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Users');
+    return queryInterface.dropTable('keywords');
   }
 };

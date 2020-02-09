@@ -1,39 +1,42 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Courses', {
-      
+    return queryInterface.createTable('actionevents', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      courseCode: {
-        type: Sequelize.STRING
-      },
-      courseTitle: {
-        type: Sequelize.STRING
-      },
-      courseUnit: {
+      activity_eventID: {
         type: Sequelize.INTEGER
       },
-      courseLevel: {
-        type: Sequelize.ENUM('100','200','300','400','500','600')
+      projectID: {
+        type: Sequelize.INTEGER
       },
-      semester: {
-        type: Sequelize.ENUM('first','second')
-      },
-      lecturerName: {
+      type: {
         type: Sequelize.STRING
       },
-      departmentId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'Departments',
-          key: 'departmentId'
-        }
+      title: {
+        type: Sequelize.STRING
+      },
+      ngo_ID: {
+        type: Sequelize.INTEGER
+      },
+      creatorUserID: {
+        type: Sequelize.INTEGER
+      },
+      description: {
+        type: Sequelize.TEXT
+      },
+      status: {
+        type: Sequelize.STRING
+      },
+      location: {
+        type: Sequelize.STRING
+      },
+      actionPlainID: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
@@ -46,6 +49,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Courses');
+    return queryInterface.dropTable('actionevents');
   }
 };

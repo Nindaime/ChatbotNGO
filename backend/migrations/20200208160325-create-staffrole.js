@@ -1,30 +1,20 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('SchoolActivityEvents', {
-      
-      activityEventId: {
+    return queryInterface.createTable('staffroles', {
+      id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      roleID: {
+        type: Sequelize.INTEGER
+      },
       title: {
         type: Sequelize.STRING
       },
-      date: {
-        type: Sequelize.DATE
-      },
       description: {
-        type: Sequelize.TEXT
-      },
-      type: {
-        type: Sequelize.ENUM('SchoolActivity','SchoolEvent')
-      },
-      venue: {
-        type: Sequelize.TEXT
-      },
-      departmentGroup: {
         type: Sequelize.TEXT
       },
       createdAt: {
@@ -38,6 +28,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('SchoolActivityEvents');
+    return queryInterface.dropTable('staffroles');
   }
 };
