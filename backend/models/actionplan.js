@@ -3,7 +3,11 @@ module.exports = (sequelize, DataTypes) => {
   const actionplan = sequelize.define(
     "actionplan",
     {
-      actionPlanID: DataTypes.INTEGER,
+      actionPlanID: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        primaryKey: true
+      },
       activityName: DataTypes.STRING,
       duration: DataTypes.TIME,
       userId: DataTypes.INTEGER,

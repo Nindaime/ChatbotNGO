@@ -1,14 +1,11 @@
-'use strict';
+"use strict";
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('activityeventparticipants', {
-      id: {
+    return queryInterface.createTable("activityeventparticipant", {
+      activity_eventID: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
-      },
-      activity_eventID: {
         type: Sequelize.INTEGER
       },
       participantUserID: {
@@ -25,6 +22,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('activityeventparticipants');
+    return queryInterface.dropTable("activityeventparticipant");
   }
 };

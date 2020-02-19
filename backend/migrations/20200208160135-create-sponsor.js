@@ -1,14 +1,11 @@
-'use strict';
+"use strict";
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('sponsors', {
-      id: {
+    return queryInterface.createTable("sponsor", {
+      userID: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
-      },
-      userID: {
         type: Sequelize.INTEGER
       },
       numberOfProjectContribution: {
@@ -28,6 +25,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('sponsors');
+    return queryInterface.dropTable("sponsor");
   }
 };

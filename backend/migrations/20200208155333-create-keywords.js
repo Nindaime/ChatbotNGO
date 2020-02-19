@@ -1,14 +1,11 @@
-'use strict';
+"use strict";
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('keywords', {
-      id: {
+    return queryInterface.createTable("keywords", {
+      entityKeywordID: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
-      },
-      entityKeywordID: {
         type: Sequelize.INTEGER
       },
       keywordType: {
@@ -31,6 +28,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('keywords');
+    return queryInterface.dropTable("keywords");
   }
 };

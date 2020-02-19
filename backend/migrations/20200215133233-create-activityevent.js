@@ -1,7 +1,7 @@
 "use strict";
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable("activityevents", {
+    return queryInterface.createTable("activityevent", {
       Activity_EventID: {
         allowNull: false,
         autoIncrement: true,
@@ -52,6 +52,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable("activityevents");
+    return queryInterface.dropTable("activityevent");
   }
 };

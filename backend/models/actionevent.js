@@ -3,7 +3,11 @@ module.exports = (sequelize, DataTypes) => {
   const actionevent = sequelize.define(
     "actionevent",
     {
-      activity_eventID: DataTypes.INTEGER,
+      activity_eventID: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        primaryKey: true
+      },
       projectID: DataTypes.INTEGER,
       type: DataTypes.STRING,
       title: DataTypes.STRING,
