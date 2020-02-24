@@ -16,6 +16,11 @@ module.exports = (sequelize, DataTypes) => {
   );
   donation.associate = function(models) {
     // associations can be defined here
+    donation.belongsTo(models.payment, {
+      foreignKey: "PaymentId",
+      as: "donation_payment",
+      onDelete: "CASCADE"
+    });
   };
   return donation;
 };

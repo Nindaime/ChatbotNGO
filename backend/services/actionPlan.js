@@ -1,35 +1,21 @@
-import { actionplan, project, user, sequelize } from "../models";
-const queryOptions = {
-  where: {
-    "$project.id": 1
-  },
-  attributes: ["Type"],
-  include: [
-    {
-      model: project,
-      as: "projects",
-      attributes: ["Title", "AmountRaised"]
-    }
-  ]
-};
+import { actionplan, project, users /* sequelize */ } from "../models";
+import sequelize from "sequelize";
 
-const getAllActionPlanWithinDateFrame = (from, to) => {
+const Op = sequelize.Op;
+
+const getAllActionPlanWithinDateFrame = (startDate, endDate) => {
   return actionplan
     .findAll({
       where: {
         ScheduleDate: {
-          [Op.gt]: from,
-          [Op.lt]: to
+          [Op.gt]: startDate,
+          [Op.lt]: endDate
         }
       },
       attributes: ["ActivityName", "Duration"]
     })
-    .then(data => {
-      return { data };
-    })
-    .catch(error => {
-      return { error: error.message };
-    });
+    .then(data => data)
+    .catch(error => error);
 };
 
 const getAllActionPlan = () => {
@@ -37,48 +23,38 @@ const getAllActionPlan = () => {
     .findAll({
       attributes: ["ActivityName", "Duration"]
     })
-    .then(data => {
-      return { data };
-    })
-    .catch(error => {
-      return { error: error.message };
-    });
+    .then(data => data)
+    .catch(error => error.message);
 };
 
 // Edit this query to take the name of the user using join
 // instead of using id
-const getAllActionPlanDevelopedByUser = userId => {
+const getAllActionPlanDevelopedByUser = username => {
   return actionplan
     .findAll({
-      where: { User_ID: userId },
-      attributes: ["ActivityName", "Duration"]
+      where: { "$users.Username$": username },
+      attributes: ["ActivityName", "Duration"],
+      include: [{ model: users, as: "users", attributes: [] }]
     })
-    .then(data => {
-      return { data };
-    })
-    .catch(error => {
-      return { error: error.message };
-    });
+    .then(data => data)
+    .catch(error => error.message);
 };
 
 const getNameOfUserThatDevelopedActionPlan = nameOfActivity => {
   return actionplan
     .findOne({
       where: { ActivityName: nameOfActivity },
+      attributes: [],
       include: [
         {
-          model: user,
+          model: users,
           as: "users",
-          attributes: ["Username"]
+          attributes: ["username"]
         }
       ]
     })
-    .then(data => {
-      return { data };
-    })
-    .catch(error => {
-      return { error: error.message };
-    });
+    .then(data => data)
+    .catch(error => error.message);
 };
 
 const getScheduleDateOfactionplan = activityName => {
@@ -87,14 +63,16 @@ const getScheduleDateOfactionplan = activityName => {
       where: {
         ActivityName: activityName
       },
-      attributes: ["Schedule_Date"]
+      attributes: ["ScheduleDate"]
     })
-    .then(data => {
-      return { data };
-    })
-    .catch(error => {
-      return { error: error.message };
-    });
+    .then(data => data)
+    .catch(error => error.message);
 };
 
-export { getAllActivityByProject };
+export {
+  getAllActionPlan,
+  getAllActionPlanWithinDateFrame,
+  getAllActionPlanDevelopedByUser,
+  getNameOfUserThatDevelopedActionPlan,
+  getScheduleDateOfactionplan
+};

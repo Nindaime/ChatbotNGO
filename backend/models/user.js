@@ -1,7 +1,7 @@
 "use strict";
 module.exports = (sequelize, DataTypes) => {
-  const user = sequelize.define(
-    "user",
+  const users = sequelize.define(
+    "users",
     {
       userID: {
         type: DataTypes.INTEGER,
@@ -17,10 +17,14 @@ module.exports = (sequelize, DataTypes) => {
       hostOnChatbot: DataTypes.TIME,
       numberOfSignIn: DataTypes.INTEGER
     },
-    {}
+    { timestamp: false }
   );
-  user.associate = function(models) {
+  users.associate = function(models) {
     // associations can be defined here
+    users.hasMany(models.actionplan, {
+      foreignKey: "userID",
+      as: "users"
+    });
   };
-  return user;
+  return users;
 };

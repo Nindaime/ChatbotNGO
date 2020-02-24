@@ -4,24 +4,20 @@ const getAllActivityByProject = projectId => {
   return activityevent
     .findAll({
       where: {
-        "$project.id$": projectId
+        "$projects.ProjectID$": projectId
       },
-      attributes: ["Type"],
+      attributes: ["Type", "Title"],
       include: [
         {
           model: project,
           as: "projects",
-          attributes: ["Title", "AmountRaised"]
-          // require: true
+          attributes: []
+          // required: true
         }
       ]
     })
-    .then(data => {
-      return { data };
-    })
-    .catch(error => {
-      return { error: error.message };
-    });
+    .then(data => data)
+    .catch(error => error.message);
 };
 
 const getStatusOfActivityEvents = activityEventID => {
@@ -32,12 +28,8 @@ const getStatusOfActivityEvents = activityEventID => {
       },
       attributes: ["Status"]
     })
-    .then(data => {
-      return { data };
-    })
-    .catch(error => {
-      return { error: error.message };
-    });
+    .then(data => data)
+    .catch(error => error.message);
 };
 
 const getLocationOfActivityEvents = activityEventID => {
@@ -48,15 +40,11 @@ const getLocationOfActivityEvents = activityEventID => {
       },
       attributes: ["Location"]
     })
-    .then(data => {
-      return { data };
-    })
-    .catch(error => {
-      return { error: error.message };
-    });
+    .then(data => data)
+    .catch(error => error.message);
 };
 
-const getAllFieldsOFActivityEvents = activityEventID => {
+const getDescriptionOfActivityEvents = activityEventID => {
   return activityevent
     .findOne({
       where: {
@@ -64,12 +52,13 @@ const getAllFieldsOFActivityEvents = activityEventID => {
       },
       attributes: ["Description"]
     })
-    .then(data => {
-      return { data };
-    })
-    .catch(error => {
-      return { error: error.message };
-    });
+    .then(data => data)
+    .catch(error => error.message);
 };
 
-export { getAllActivityByProject };
+export {
+  getAllActivityByProject,
+  getStatusOfActivityEvents,
+  getLocationOfActivityEvents,
+  getDescriptionOfActivityEvents
+};

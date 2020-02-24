@@ -1,40 +1,19 @@
 import { ngoinformation, ngo, sequelize } from "../models";
 
 const getNgoPhoneNumber = ngoId => {
-  return (getDatabaseFieldById = (ngoId, "PHONE_NUMBER"));
+  return (getNgoInformation = (ngoId, "phone"));
 };
 
-const getNgoEmail = ngoId => {
-  return (getDatabaseFieldById = (ngoId, "EMAIL"));
-};
-
-const getNgoWebsite = ngoId => {
-  return (getDatabaseFieldById = (ngoId, "WEBSITE"));
-};
-
-const getNgoObjective = ngoId => {
-  return (getDatabaseFieldById = (ngoId, "OBJECTIVE"));
-};
-
-const getNgoFocus = ngoId => {
-  return (getDatabaseFieldById = (ngoId, "FOCUS"));
-};
-
-const getNgoCreed = ngoId => {
-  return (getDatabaseFieldById = (ngoId, "CREED"));
-};
-
-const getNgoGoal = ngoId => {
-  return (getDatabaseFieldById = (ngoId, "GOAL"));
-};
-
-const getDatabaseFieldById = (ngoId, nameOfField) => {
+const getNgoInformation = (ngoId, nameOfSearchRequestValue) => {
   return ngoinformation
     .findOne({
       where: {
-        NGO_ID: ngoId
+        NGO_ID: ngoId,
+        informationTitle: {
+          [Op.like]: `%${nameOfSearchRequestValue}%`
+        }
       },
-      attributes: [nameOfField]
+      attributes: ["informationText"]
     })
     .then(data => {
       return { data };
@@ -44,4 +23,28 @@ const getDatabaseFieldById = (ngoId, nameOfField) => {
     });
 };
 
-export { getAllActivityByProject };
+const getNgoEmail = ngoId => {
+  return (getNgoInformation = (ngoId, "EMAIL"));
+};
+
+const getNgoWebsite = ngoId => {
+  return (getNgoInformation = (ngoId, "WEBSITE"));
+};
+
+const getNgoObjective = ngoId => {
+  return (getNgoInformation = (ngoId, "OBJECTIVE"));
+};
+
+const getNgoFocus = ngoId => {
+  return (getNgoInformation = (ngoId, "FOCUS"));
+};
+
+const getNgoCreed = ngoId => {
+  return (getNgoInformation = (ngoId, "CREED"));
+};
+
+const getNgoGoal = ngoId => {
+  return (getNgoInformation = (ngoId, "GOAL"));
+};
+
+export { getNgoEmail };

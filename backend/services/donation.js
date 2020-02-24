@@ -1,16 +1,40 @@
-import { donation, payment,project, activityevent sequelize } from "../models";
+import {
+  donation,
+  payment,
+  project,
+  activityevent,
+  sequelize
+} from "../models";
 
 const getDonationsMadeOnProject = projectId => {
   return donation
-    .findOne({
+    .findAll({
+      attributes: ["Title"],
       where: {
-        '$project.ProjectID': projectId
+        "$activity_project.ProjectID$": projectId,
+        "$donation_payment.status$": "Paid"
       },
-      attributes: ["Status"],
-	  include:[
-	  { model: payments, as:"payments"}
-	  ,{ model: activityevent, as:"activityevents", include :[{model:project, as:"projects"}]}
-	  ]
+      include: [
+        {
+          model: payment,
+          as: "donation_payment",
+          attributes: [[sequelize.fn("sum", sequelize.col("amount")), "total"]],
+          include: [
+            {
+              model: activityevent,
+              as: "payment_activity",
+              attributes: ["NGO_ID", "ProjectID"],
+              include: [
+                {
+                  model: project,
+                  as: "activity_project",
+                  attributes: ["ProjectID"]
+                }
+              ]
+            }
+          ]
+        }
+      ]
     })
     .then(data => {
       return { data };
@@ -20,4 +44,4 @@ const getDonationsMadeOnProject = projectId => {
     });
 };
 
-export { getAllActivityByProject };
+export { getDonationsMadeOnProject };

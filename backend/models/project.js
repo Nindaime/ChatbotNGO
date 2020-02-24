@@ -4,14 +4,14 @@ module.exports = (sequelize, DataTypes) => {
     "project",
 
     {
-      projectID: {
+      ProjectID: {
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true
       },
       title: { type: DataTypes.STRING },
       amountRaised: { type: DataTypes.STRING },
-      amoountNeeded: { type: DataTypes.STRING },
+      amountNeeded: { type: DataTypes.STRING },
       projectMangerID: { type: DataTypes.STRING }
     }
   );
@@ -20,6 +20,11 @@ module.exports = (sequelize, DataTypes) => {
     project.hasMany(models.actionevent, {
       foreignKey: "projectID",
       as: "events"
+    });
+
+    project.hasMany(models.activityevent, {
+      foreignKey: "ProjectID",
+      as: "activi_project"
     });
   };
   return project;

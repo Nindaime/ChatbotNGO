@@ -1,14 +1,13 @@
 "use strict";
 module.exports = (sequelize, DataTypes) => {
   const payment = sequelize.define(
-    "payments",
+    "payment",
     {
-      payment_ID: {
+      PaymentID: {
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true
       },
-      userID: DataTypes.INTEGER,
       userID: DataTypes.INTEGER,
       amount: DataTypes.INTEGER,
       status: DataTypes.STRING,
@@ -18,6 +17,17 @@ module.exports = (sequelize, DataTypes) => {
   );
   payment.associate = function(models) {
     // associations can be defined here
+    payment.hasOne(models.donation, {
+      foreignKey: "PaymentID",
+      as: "donation_payment"
+    });
+
+    payment.belongsTo(models.activityevent, {
+      foreignKey: "ActivityEventID",
+      allowNull: false,
+      as: "payment_activity",
+      onDelete: "CASCADE"
+    });
   };
   return payment;
 };

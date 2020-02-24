@@ -17,15 +17,21 @@ module.exports = (sequelize, DataTypes) => {
       status: { type: DataTypes.STRING },
       location: { type: DataTypes.STRING },
       actionPlainID: { type: DataTypes.STRING }
-    }
+    },
+    { freezeTableName: true }
   );
   activityevent.associate = function(models) {
     // associations can be defined here
     activityevent.belongsTo(models.project, {
-      foreignKey: "projectID",
+      foreignKey: "ProjectID",
       allowNull: false,
-      as: "projects",
+      as: "activity_project",
       onDelete: "CASCADE"
+    });
+
+    activityevent.hasMany(models.payment, {
+      foreignKey: "activity_eventID",
+      as: "payments2"
     });
   };
   return activityevent;
