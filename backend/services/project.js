@@ -1,14 +1,24 @@
-import { project, project, sequelize } from "../models";
+import { project, activityevent, sequelize } from "../models";
 const queryOptions = {
-  attributes: ["Type", "ProjectID"]
+  attributes: ["Title", "ProjectID"],
+  include: [
+    {
+      model: activityevent,
+      as: "activi_project",
+      attributes: []
+    }
+  ]
 };
 
-const getAllProjects = (req, res) => {
+const getAllProjectsInprogress = () => {
   return project
     .findAll({
-      ...queryOptions
+      ...queryOptions,
+      where: { "$activi_project.status$": "In Progres" },
+      raw: true
     })
     .then(data => {
+      // console.log("data:", data);
       return { data };
     })
     .catch(error => {
@@ -16,4 +26,20 @@ const getAllProjects = (req, res) => {
     });
 };
 
-export { getAllProjects };
+const getAllCompletedProjects = () => {
+  return project
+    .findAll({
+      ...queryOptions,
+      where: { "$activi_project.status$": "Completed" },
+      raw: true
+    })
+    .then(data => {
+      // console.log("data:", data);
+      return { data };
+    })
+    .catch(error => {
+      return { error: error.message };
+    });
+};
+
+export { getAllProjectsInprogress, getAllCompletedProjects };

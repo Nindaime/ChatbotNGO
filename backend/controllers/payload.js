@@ -1,77 +1,62 @@
-let text = ''
+let text = "";
 let context = {};
 let entity = {};
 let isLoggedIn = false;
 
 const sessionContext = {
-    name: "session_variables",
-    lifespan: 5,
-    parameters: {
-      "isLoggedIn": isLoggedIn,
-    }
-  };
-
-const contextOut = [sessionContext];
+  name: "session_variables",
+  lifespan: 5,
+  parameters: {
+    isLoggedIn: isLoggedIn
+  }
+};
 
 class Payload {
+  // static setContext(session, value) {
+  //   context = {
+  //     outputContexts: [
+  //       {
+  //         name: `${session}/contexts/${value}`,
+  //         lifespanCount: 3,
+  //         parameters: {
+  //           isLoggedIn: isLoggedIn
+  //         }
+  //       }
+  //     ]
+  //   };
+  // }
 
-    static clear() {
-        text = ''
-        context = {};
-        entity = {};
-    }
+  // static setEntity(session, value) {
+  //   context = {
+  //     sessionEntityTypes: [
+  //       {
+  //         name: `${session}/entityTypes/isLoggedIn`,
+  //         entities: [
+  //           {
+  //             value: value
+  //           }
+  //         ],
+  //         entityOverrideMode: "ENTITY_OVERRIDE_MODE_OVERRIDE"
+  //       }
+  //     ]
+  //   };
+  // }
 
-    static setText(value) {
-        text = value
-    }
-
-
-    static setContext(session,value){
-        context = {
-            "outputContexts": [
-                {
-                  "name": `${session}/contexts/${value}`,
-                  "lifespanCount": 3,
-                  "parameters": {
-                    "isLoggedIn": isLoggedIn
-                  }
-                 
-                }
-              ]
+  static getPayload(text) {
+    console.log("text", text);
+    return {
+      fulfillmentText: text,
+      fulfillmentMessages: [
+        {
+          text: {
+            text: [text]
+          }
         }
-    }
-
-    static setEntity(session,value){
-        context = {
-            "sessionEntityTypes":[
-                {
-                  "name":`${session}/entityTypes/isLoggedIn`,
-                  "entities":[
-                    {
-                      "value":value
-                    }
-                  ],
-                  "entityOverrideMode":"ENTITY_OVERRIDE_MODE_OVERRIDE"
-                }
-              ]
-        }
-    }
-
-    static getPayload() {
-        return ({
-            "fulfillmentText": text,
-            "fulfillmentMessages": [
-                {
-                    "text": {
-                        "text": [text]
-
-                    }
-                }
-            ],context
-            ,entity
-        });
-
-    }
+      ],
+      context,
+      entity
+    };
+  }
 }
 
 export default Payload;
