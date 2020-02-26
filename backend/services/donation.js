@@ -10,15 +10,12 @@ const getDonationsMadeOnProject = projectId => {
   return donation
     .findAll({
       attributes: ["Title"],
-      where: {
-        "$activity_project.ProjectID$": projectId,
-        "$donation_payment.status$": "Paid"
-      },
       include: [
         {
           model: payment,
           as: "donation_payment",
           attributes: [[sequelize.fn("sum", sequelize.col("amount")), "total"]],
+          where: { Status: "Paid" },
           include: [
             {
               model: activityevent,
@@ -28,15 +25,18 @@ const getDonationsMadeOnProject = projectId => {
                 {
                   model: project,
                   as: "activity_project",
-                  attributes: ["ProjectID"]
+                  attributes: ["ProjectID"],
+                  where: { ProjectID: projectId }
                 }
               ]
             }
           ]
         }
-      ]
+      ],
+      raw: true
     })
     .then(data => {
+      console.log("data", data);
       return { data };
     })
     .catch(error => {

@@ -2,7 +2,7 @@
 import Payload from "./payload";
 import Query from "./query";
 import Sequelize from "sequelize";
-import * as services from "../services/project";
+import * as services from "../services";
 import moment from "moment";
 const dialogflow = require("dialogflow");
 const Result = require("../models").Result;
@@ -16,8 +16,9 @@ const Op = Sequelize.Op;
 
 const INTENT_NAME = {
   Get_Ongoing_Project_list: "Get_Ongoing_Project_list",
-  Get_Completed_Project: "Get_Completed_Project",
+  Get_Completed_Project_list: "Get_Completed_Project_list",
   login: "login",
+  Donation: "donation",
   time: "timetable",
   evt: "event.activity",
   format: "homework.format",
@@ -29,10 +30,12 @@ const INTENT_NAME = {
 const projectId = "ngoagent-cwwjtb";
 const sessionId = "whateverAmaobiwantsToCAllit";
 const languageCode = "en";
+let response;
 exports.getResult = (req, res, next) => {
   const { displayName, queryText: queryText } = req.body.queryResult.intent;
   const { parameters, session } = req.body.queryResult;
   console.log("this is the display name: ", displayName);
+  response = res;
   // console.log("the parameters are as follows: ", parameters);
   // console.log("this is the query result :", req.body.queryResult);
 
@@ -50,55 +53,28 @@ exports.getResult = (req, res, next) => {
   // const sessionPath = sessionClient.sessionPath(projectId, sessionId);
   // console.log("session path", sessionPath);
   if (displayName === INTENT_NAME.Get_Ongoing_Project_list) {
-    services
-      .getAllProjectsInprogress()
-      .then(result => {
-        if (result.error) throw new Error(result.error);
-        console.log("error");
-        // cosnt text = result.data.map(obj => obj.Title).join(",");
-
-        return res
-          .status(200)
-          .json(
-            Payload.getPayload(
-              "The ongoing projects are: " +
-                result.data.map(obj => obj.Title).join(",")
-            )
-          );
-      })
-      .catch(err => console.log("err", err));
+    getServicesQueryResult(services.getAllProjectsInprogress());
   }
 
-  if (displayName === INTENT_NAME.Get_Completed_Project) {
-    services
-      .getAllCompletedProjects()
-      .then(result => {
-        if (result.error) throw new Error(result.error);
-        console.log("error");
-        // cosnt text = result.data.map(obj => obj.Title).join(",");
-
-        return res
-          .status(200)
-          .json(
-            Payload.getPayload(
-              "The ongoing projects are: " +
-                result.data.map(obj => obj.Title).join(",")
-            )
-          );
-      })
-      .catch(err => console.log("err", err));
+  if (displayName === INTENT_NAME.Get_Completed_Project_list) {
+    getServicesQueryResult(services.getAllCompletedProjects());
   }
 
-  if (displayName === INTENT_NAME.deadline) {
+  if (displayName === INTENT_NAME.Donation) {
+    getServicesQueryResult(services.getDonationsMadeOnProject(117));
   }
 
-  if (displayName === INTENT_NAME.homework) {
-  }
-
-  if (displayName === INTENT_NAME.mode) {
-  }
-
-  if (displayName === INTENT_NAME.evt) {
-  }
   // next();
+};
+
+const getServicesQueryResult = service => {
+  service
+    .then(result => {
+      if (result.error) throw new Error(result.error);
+
+      return response
+        .status(200)
+        .json(Payload.getPayload(result.data.map(obj => obj.Title).join(",")));
+    })
+    .catch(err => console.log("err", err));
 };
