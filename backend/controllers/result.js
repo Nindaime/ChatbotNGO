@@ -61,7 +61,7 @@ exports.getResult = (req, res, next) => {
   }
 
   if (displayName === INTENT_NAME.Donation) {
-    getServicesQueryResult(services.getDonationsMadeOnProject(117));
+    getServicesQueryResult(services.getDonationsMadeOnProject(103));
   }
 
   // next();

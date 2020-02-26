@@ -16,17 +16,20 @@ const getDonationsMadeOnProject = projectId => {
           as: "donation_payment",
           attributes: [[sequelize.fn("sum", sequelize.col("amount")), "total"]],
           where: { Status: "Paid" },
+		  required: true,
           include: [
             {
               model: activityevent,
               as: "payment_activity",
               attributes: ["NGO_ID", "ProjectID"],
+			  required: true,
               include: [
                 {
                   model: project,
                   as: "activity_project",
                   attributes: ["ProjectID"],
-                  where: { ProjectID: projectId }
+                  where: { ProjectID: projectId },
+				  required: true
                 }
               ]
             }
