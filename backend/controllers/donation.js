@@ -1,13 +1,13 @@
 import * as donationService from "../services/donation";
-const getDonationsMadeOnProject = (req, res) => {
+const getTotalAmountRaisedOnProject = (req, res) => {
   const {
     body: { projectid }
   } = req;
 
   donationService
-    .getDonationsMadeOnProject(projectid)
+    .getTotalAmountRaisedOnProject(projectid)
     .then(data => res.send({ data }))
     .catch(err => res.send({ error: "an error occurred" }));
 };
 
-export { getDonationsMadeOnProject };
+export { getTotalAmountRaisedOnProject };

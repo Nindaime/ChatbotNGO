@@ -28,6 +28,13 @@ module.exports = (sequelize, DataTypes) => {
       as: "payment_activity",
       onDelete: "CASCADE"
     });
+
+    payment.belongsTo(models.users, {
+      foreignKey: "UserID",
+      allowNull: false,
+      as: "payment_users",
+      onDelete: "CASCADE"
+    });
   };
   return payment;
 };

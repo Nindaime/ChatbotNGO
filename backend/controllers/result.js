@@ -13,6 +13,7 @@ const INTENT_NAME = {
   Get_Completed_Project_list: "Get_Completed_Project_list",
   login: "login",
   Donation: "donation",
+  Donation_List: "donation-list",
   time: "timetable",
   evt: "event.activity",
   mode: "homework.mode",
@@ -56,9 +57,15 @@ exports.getResult = (req, res, next) => {
   if (displayName === INTENT_NAME.Donation) {
     const { projectName } = parameters;
 
-    console.log("project name: ", projectName);
-    console.log("parameter: ", parameters);
-    getServicesQueryResult(services.getDonationsMadeOnProject(projectName));
+    getServicesQueryResult(services.getTotalAmountRaisedOnProject(projectName));
+  }
+
+  if (displayName === INTENT_NAME.Donation_List) {
+    const { projectName } = parameters;
+    console.log("parameters ", parameters);
+    getServicesQueryResult(
+      services.getListOfUserPaymentForProject(projectName)
+    );
   }
 
   if (displayName === INTENT_NAME.login) {
