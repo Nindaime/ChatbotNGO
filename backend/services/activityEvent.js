@@ -17,7 +17,7 @@ const getAllActivityByProject = projectId => {
       ]
     })
     .then(data => data)
-    .catch(error => error.message);
+    .catch(error => `Error : \n  ${error.message}`);
 };
 
 const getStatusOfActivityEvents = activityEventID => {
@@ -29,8 +29,8 @@ const getStatusOfActivityEvents = activityEventID => {
       attributes: ["Status"]
     })
     .then(data => data)
-    .catch(error => error.message);
-};
+    .catch(error => `Error : \n  ${error.message}`);
+}
 
 const getLocationOfActivityEvents = activityEventID => {
   return activityevent
@@ -41,7 +41,7 @@ const getLocationOfActivityEvents = activityEventID => {
       attributes: ["Location"]
     })
     .then(data => data)
-    .catch(error => error.message);
+    .catch(error => `Error : \n  ${error.message}`);
 };
 
 const getDescriptionOfActivityEvents = activityEventID => {
@@ -53,7 +53,7 @@ const getDescriptionOfActivityEvents = activityEventID => {
       attributes: ["Description"]
     })
     .then(data => data)
-    .catch(error => error.message);
+    .catch(error => `Error : \n  ${error.message}`);
 };
 
 export {

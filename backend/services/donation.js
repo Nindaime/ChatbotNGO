@@ -42,9 +42,7 @@ const getDonationsMadeOnProject = projectId => {
       console.log("data", data);
       return { data };
     })
-    .catch(error => {
-      return { error: error.message };
-    });
+    .catch(error => `Error : \n  ${error.message}`);
 };
 
 export { getDonationsMadeOnProject};

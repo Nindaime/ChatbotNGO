@@ -15,7 +15,7 @@ const getAllActionPlanWithinDateFrame = (startDate, endDate) => {
       attributes: ["ActivityName", "Duration"]
     })
     .then(data => data)
-    .catch(error => error);
+    .catch(error => `Error : \n  ${error.message}`);
 };
 
 const getAllActionPlan = () => {
@@ -24,7 +24,7 @@ const getAllActionPlan = () => {
       attributes: ["ActivityName", "Duration"]
     })
     .then(data => data)
-    .catch(error => error.message);
+    .catch(error => `Error : \n  ${error.message}`);
 };
 
 // Edit this query to take the name of the user using join
@@ -37,7 +37,7 @@ const getAllActionPlanDevelopedByUser = username => {
       include: [{ model: users, as: "users", attributes: [] }]
     })
     .then(data => data)
-    .catch(error => error.message);
+    .catch(error => `Error : \n  ${error.message}`);
 };
 
 const getNameOfUserThatDevelopedActionPlan = nameOfActivity => {
@@ -54,7 +54,7 @@ const getNameOfUserThatDevelopedActionPlan = nameOfActivity => {
       ]
     })
     .then(data => data)
-    .catch(error => error.message);
+    .catch(error => `Error : \n  ${error.message}`);
 };
 
 const getScheduleDateOfactionplan = activityName => {
@@ -66,7 +66,7 @@ const getScheduleDateOfactionplan = activityName => {
       attributes: ["ScheduleDate"]
     })
     .then(data => data)
-    .catch(error => error.message);
+    .catch(error => `Error : \n  ${error.message}`);
 };
 
 export {

@@ -18,9 +18,7 @@ const getNgoInformation = (ngoId, nameOfSearchRequestValue) => {
     .then(data => {
       return { data };
     })
-    .catch(error => {
-      return { error: error.message };
-    });
+    .catch(error => `Error : \n  ${error.message}`);
 };
 
 const getNgoEmail = ngoId => {

@@ -18,12 +18,12 @@ const getAllProjectsInprogress = () => {
       raw: true
     })
     .then(data => {
-      // console.log("data:", data);
-      return { data };
+      return (
+        "List of ongoing projects are : \n" +
+        data.map(res => res.Title).join("\n")
+      );
     })
-    .catch(error => {
-      return { error: error.message };
-    });
+    .catch(error => `Error : \n  ${error.message}`);
 };
 
 const getAllCompletedProjects = () => {
@@ -34,12 +34,12 @@ const getAllCompletedProjects = () => {
       raw: true
     })
     .then(data => {
-      // console.log("data:", data);
-      return { data };
+      return (
+        "List of Completed projects are : \n" +
+        data.map(res => res.Title).join("\n")
+      );
     })
-    .catch(error => {
-      return { error: error.message };
-    });
+    .catch(error => `Error : \n  ${error.message}`);
 };
 
 export { getAllProjectsInprogress, getAllCompletedProjects };

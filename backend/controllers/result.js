@@ -15,7 +15,6 @@ const INTENT_NAME = {
   Donation: "donation",
   time: "timetable",
   evt: "event.activity",
-  login: "login-password",
   mode: "homework.mode",
   deadline: "homework.deadline",
   homework: "homework"
@@ -26,7 +25,44 @@ const sessionId = "whateverAmaobiwantsToCAllit";
 const languageCode = "en";
 let response;
 exports.getResult = (req, res, next) => {
-  isUserLoginValid(req, res);
+  const { displayName, queryText: queryText } = req.body.queryResult.intent;
+  const { parameters, session } = req.body.queryResult;
+  console.log("this is the display name: ", displayName);
+  response = res;
+  // console.log("the parameters are as follows: ", parameters);
+  // console.log("this is the query result :", req.body.queryResult);
+
+  // console.log("output context 2", req.body.queryResult.outputContexts[2]);
+  // console.log("the parameters for session :", req.body.queryResult);
+
+  // let intentResponse = await detectIntent(
+  //   projectId,
+  //   sessionId,
+  //   query,
+  //   context,
+  //   languageCode
+  // );
+  // const sessionClient = new dialogflow.SessionsClient();
+  // const sessionPath = sessionClient.sessionPath(projectId, sessionId);
+  // console.log("session path", sessionPath);
+  if (displayName === INTENT_NAME.Get_Ongoing_Project_list) {
+    getServicesQueryResult(services.getAllProjectsInprogress());
+  }
+
+  if (displayName === INTENT_NAME.Get_Completed_Project_list) {
+    getServicesQueryResult(services.getAllCompletedProjects());
+  }
+
+  if (displayName === INTENT_NAME.Donation) {
+    getServicesQueryResult(services.getDonationsMadeOnProject(103));
+  }
+
+  if (displayName === INTENT_NAME.login) {
+    const { username, password } = parameters;
+    console.log("username", username);
+    console.log("password", password);
+    getServicesQueryResult(services.isUserLoginValid(username, password));
+  }
 
   // next();
 };
@@ -36,9 +72,7 @@ const getServicesQueryResult = service => {
     .then(result => {
       if (result.error) throw new Error(result.error);
 
-      return response
-        .status(200)
-        .json(Payload.getPayload(result.data.map(obj => obj.Title).join(",")));
+      return response.status(200).json(Payload.getPayload(result));
     })
     .catch(err => console.log("err", err));
 };
