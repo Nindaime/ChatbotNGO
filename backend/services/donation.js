@@ -6,43 +6,47 @@ import {
   sequelize
 } from "../models";
 
-const getDonationsMadeOnProject = projectId => {
+const getDonationsMadeOnProject = projectName => {
   return donation
-    .findAll({
-      attributes: ["Title"],
+    .findOne({
       include: [
         {
           model: payment,
           as: "donation_payment",
           attributes: [[sequelize.fn("sum", sequelize.col("amount")), "total"]],
           where: { Status: "Paid" },
-		  required: true,
+          required: true,
           include: [
             {
               model: activityevent,
               as: "payment_activity",
               attributes: ["NGO_ID", "ProjectID"],
-			  required: true,
+              required: true,
               include: [
                 {
                   model: project,
                   as: "activity_project",
                   attributes: ["ProjectID"],
-                  where: { ProjectID: projectId },
-				  required: true
+                  where: { Title: projectName },
+                  required: true
                 }
               ]
             }
           ]
         }
-      ],
-      raw: true
+      ]
+      // raw: true
     })
     .then(data => {
-      console.log("data", data);
-      return { data };
+      const result = data.get({ plain: true });
+
+      const amountRaised = result.donation_payment
+        ? result.donation_payment.total
+        : "Zero";
+
+      return `The total amount donated on Project:${projectName} is ${amountRaised}`;
     })
     .catch(error => `Error : \n  ${error.message}`);
 };
 
-export { getDonationsMadeOnProject};
+export { getDonationsMadeOnProject };

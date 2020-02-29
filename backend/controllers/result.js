@@ -54,13 +54,15 @@ exports.getResult = (req, res, next) => {
   }
 
   if (displayName === INTENT_NAME.Donation) {
-    getServicesQueryResult(services.getDonationsMadeOnProject(103));
+    const { projectName } = parameters;
+
+    console.log("project name: ", projectName);
+    console.log("parameter: ", parameters);
+    getServicesQueryResult(services.getDonationsMadeOnProject(projectName));
   }
 
   if (displayName === INTENT_NAME.login) {
     const { username, password } = parameters;
-    console.log("username", username);
-    console.log("password", password);
     getServicesQueryResult(services.isUserLoginValid(username, password));
   }
 

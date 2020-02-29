@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
       location: { type: DataTypes.STRING },
       actionPlainID: { type: DataTypes.STRING }
     },
-    { freezeTableName: true }
+    { freezeTableName: true, timestamps: false }
   );
   activityevent.associate = function(models) {
     // associations can be defined here

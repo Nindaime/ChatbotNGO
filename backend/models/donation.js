@@ -12,7 +12,9 @@ module.exports = (sequelize, DataTypes) => {
       title: DataTypes.STRING,
       paymentID: DataTypes.INTEGER
     },
-    {}
+    {
+      timestamps: false
+    }
   );
   donation.associate = function(models) {
     // associations can be defined here
