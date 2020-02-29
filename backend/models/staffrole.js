@@ -3,7 +3,7 @@ module.exports = (sequelize, DataTypes) => {
   const staffrole = sequelize.define(
     "staffrole",
     {
-      roleID: {
+      RoleID: {
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true
@@ -11,10 +11,17 @@ module.exports = (sequelize, DataTypes) => {
       title: DataTypes.STRING,
       description: DataTypes.TEXT
     },
-    {}
+    {
+      freezeTableName: true
+    }
   );
   staffrole.associate = function(models) {
     // associations can be defined here
+    staffrole.hasMany(models.staff, {
+      foreignKey: "RoleID",
+      as: "staffrole_staff"
+    });
+    
   };
   return staffrole;
 };

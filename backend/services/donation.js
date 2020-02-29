@@ -47,4 +47,4 @@ const getDonationsMadeOnProject = projectId => {
     });
 };
 
-export { getDonationsMadeOnProject };
+export { getDonationsMadeOnProject};

@@ -3,3 +3,4 @@ export * from "./actionPlan";
 export * from "./activityEvent";
 export * from "./donation";
 export * from "./ngoInformation";
+export * from "./login";
