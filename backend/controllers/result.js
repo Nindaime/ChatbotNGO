@@ -1,6 +1,5 @@
 // in controllers/stuff.js
-import { isUserLoginValid } from "./login";
-import Payload from "./payload";
+import Response from "./response";
 import Sequelize from "sequelize";
 import * as services from "../services";
 import moment from "moment";
@@ -30,6 +29,9 @@ exports.getResult = (req, res, next) => {
   const { parameters, session } = req.body.queryResult;
   console.log("this is the display name: ", displayName);
   response = res;
+
+  console.log("this is the queryResult: ", req.body.queryResult);
+  
   // console.log("the parameters are as follows: ", parameters);
   // console.log("this is the query result :", req.body.queryResult);
 
@@ -81,7 +83,7 @@ const getServicesQueryResult = service => {
     .then(result => {
       if (result.error) throw new Error(result.error);
 
-      return response.status(200).json(Payload.getPayload(result));
+      return response.status(200).json(Response.getPayload(result));
     })
     .catch(err => console.log("err", err));
 };

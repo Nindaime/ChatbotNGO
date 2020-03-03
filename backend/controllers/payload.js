@@ -1,62 +1,46 @@
-let text = "";
-let context = {};
-let entity = {};
-let isLoggedIn = false;
-
-const sessionContext = {
-  name: "session_variables",
-  lifespan: 5,
-  parameters: {
-    isLoggedIn: isLoggedIn
+export default class Payload {
+  constructor(context) {
+    this.outputContext = context.name;
+    this.parameters = context.parameters;
+    this.lifespanCount = context.lifespanCount;
   }
-};
 
-class Payload {
-  // static setContext(session, value) {
-  //   context = {
-  //     outputContexts: [
-  //       {
-  //         name: `${session}/contexts/${value}`,
-  //         lifespanCount: 3,
-  //         parameters: {
-  //           isLoggedIn: isLoggedIn
-  //         }
-  //       }
-  //     ]
-  //   };
-  // }
-
-  // static setEntity(session, value) {
-  //   context = {
-  //     sessionEntityTypes: [
-  //       {
-  //         name: `${session}/entityTypes/isLoggedIn`,
-  //         entities: [
-  //           {
-  //             value: value
-  //           }
-  //         ],
-  //         entityOverrideMode: "ENTITY_OVERRIDE_MODE_OVERRIDE"
-  //       }
-  //     ]
-  //   };
-  // }
-
-  static getPayload(text) {
-    console.log("text", text);
-    return {
-      fulfillmentText: text,
-      fulfillmentMessages: [
-        {
-          text: {
-            text: [text]
-          }
+  modifyOutputContextName(nameOfRedirectIntent) {
+    const arr = this.outputContext.split("/");
+    const arrLength = arr.length;
+    this.outputContext = arr
+      .map((item, index) => {
+        if (index === arrLength - 1) {
+          return nameOfRedirectIntent;
         }
-      ],
-      context,
-      entity
+        return item;
+      })
+      .join("/");
+  }
+
+  modifyParameters() {}
+  
+  modifyLifespanCount(value) {
+    this.lifespanCount = value;
+  }
+
+  setResponseText(text) {
+    this.text = text;
+  }
+
+  getResponseText() {
+    return this.text;
+  }
+
+  getContext() {
+    return {
+      outputContexts: [
+        {
+          name: this.outputContextName,
+          lifespanCount: this.lifespanCount,
+          parameters: { ... this.parameters}
+        }
+      ]
     };
   }
 }
-
-export default Payload;
