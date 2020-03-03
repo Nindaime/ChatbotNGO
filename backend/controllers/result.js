@@ -1,5 +1,6 @@
 // in controllers/stuff.js
-import Response from "./response";
+import { getResponse } from "./response";
+import Payload from "./payload";
 import Sequelize from "sequelize";
 import * as services from "../services";
 import moment from "moment";
@@ -27,11 +28,11 @@ let response;
 exports.getResult = (req, res, next) => {
   const { displayName, queryText: queryText } = req.body.queryResult.intent;
   const { parameters, session } = req.body.queryResult;
-  console.log("this is the display name: ", displayName);
+  const payload = new Payload(req.body.queryResult.outputContexts[0]);
   response = res;
 
   console.log("this is the queryResult: ", req.body.queryResult);
-  
+
   // console.log("the parameters are as follows: ", parameters);
   // console.log("this is the query result :", req.body.queryResult);
 
@@ -82,8 +83,8 @@ const getServicesQueryResult = service => {
   service
     .then(result => {
       if (result.error) throw new Error(result.error);
-
-      return response.status(200).json(Response.getPayload(result));
+      payload.setResponseText(result);
+      return response.status(200).json(getResponse(payload));
     })
     .catch(err => console.log("err", err));
 };
