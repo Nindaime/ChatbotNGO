@@ -4,7 +4,7 @@ const getAllActivityByProject = projectName => {
   return activityevent
     .findAll({
       where: {
-        "$projects.ProjectName$": projectName
+        "$projects.title$": projectName
       },
       attributes: ["Type", "Title"],
       include: [
