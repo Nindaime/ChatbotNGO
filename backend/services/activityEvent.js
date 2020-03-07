@@ -1,10 +1,10 @@
 import { activityevent, project, sequelize } from "../models";
 
-const getAllActivityByProject = projectId => {
+const getAllActivityByProject = projectName => {
   return activityevent
     .findAll({
       where: {
-        "$projects.ProjectID$": projectId
+        "$projects.ProjectName$": projectName
       },
       attributes: ["Type", "Title"],
       include: [
@@ -30,7 +30,7 @@ const getStatusOfActivityEvents = activityEventID => {
     })
     .then(data => data)
     .catch(error => `Error : \n  ${error.message}`);
-}
+};
 
 const getLocationOfActivityEvents = activityEventID => {
   return activityevent

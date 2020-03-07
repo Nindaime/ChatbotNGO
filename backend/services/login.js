@@ -10,24 +10,28 @@ const isUserLoginValid = (username, password) => {
           model: staff,
           as: "user_staff",
           required: false,
-          attributes: [],
+          attributes: ["roleId"],
           include: [
             {
               model: staffrole,
               as: "staff_staffrole",
               attributes: ["Title"],
-              required: true
+              required: staff
             }
           ]
         }
-      ],
-      raw: false
+      ]
     })
     .then(data => {
-      // console.log("data", data);
-      if (data) return { login: true };
+      console.log(".>>>>>>>>>", data);
+      if (data) {
+        const user = data.get({ plain: true });
+        console.log("data", user);
 
-      throw new Error("Login detail is Incorrect");
+        return { login: true, staffrole: user.user_staff.staff_staffrole };
+      }
+
+      throw new Error("Unauthorized Access");
     })
     .catch(error => {
       return { error: error.message };

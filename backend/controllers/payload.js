@@ -3,6 +3,10 @@ export default class Payload {
     this.outputContext = context.name;
     this.parameters = context.parameters;
     this.lifespanCount = context.lifespanCount;
+
+    // console.log("output name", context.name);
+    // console.log("life span", context.lifespanCount);
+    // console.log("parameters", context.parameters);
   }
 
   modifyOutputContextName(nameOfRedirectIntent) {
@@ -19,7 +23,7 @@ export default class Payload {
   }
 
   modifyParameters() {}
-  
+
   modifyLifespanCount(value) {
     this.lifespanCount = value;
   }
@@ -38,7 +42,7 @@ export default class Payload {
         {
           name: this.outputContextName,
           lifespanCount: this.lifespanCount,
-          parameters: { ... this.parameters}
+          parameters: { ...this.parameters }
         }
       ]
     };

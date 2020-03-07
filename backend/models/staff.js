@@ -3,7 +3,11 @@ module.exports = (sequelize, DataTypes) => {
   const staff = sequelize.define(
     "staff",
     {
-      userID: DataTypes.INTEGER,
+      userID: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        primaryKey: true
+      },
 
       RoleID: DataTypes.INTEGER
     },
