@@ -10,7 +10,7 @@ const getAllActivityByProject = projectName => {
       include: [
         {
           model: project,
-          as: "projects",
+          as: "activity_project",
           attributes: []
           // required: true
         }
