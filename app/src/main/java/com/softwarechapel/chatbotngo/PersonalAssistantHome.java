@@ -1,4 +1,4 @@
-package com.softwarechapel.chatbotsis;
+package com.softwarechapel.chatbotngo;
 
 import androidx.appcompat.app.AppCompatActivity;
 
