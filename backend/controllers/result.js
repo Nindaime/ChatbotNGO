@@ -17,6 +17,8 @@ const INTENT_NAME = {
   time: "timetable",
   evt: "event.activity - custom",
   evt_status: "event.activity.status - custom",
+  evt_description: "event.activity.description - custom",
+  evt_location: "event.activity.location - custom",
   mode: "homework.mode",
   deadline: "homework.deadline",
   homework: "homework"
@@ -150,6 +152,60 @@ exports.getResult = async (req, res, next) => {
     if (user.staffrole) {
       getServicesQueryResult(
         services.getStatusOfActivityEvents(activityEventName),
+        payload
+      );
+
+      return;
+    }
+    payload.setResponseText("FORBIDDEN");
+    return response.status(200).json(getResponse(payload));
+  }
+
+  if (displayName === INTENT_NAME.evt_description) {
+    const {
+      username,
+      password,
+      activityEventName
+    } = req.body.queryResult.outputContexts[0].parameters;
+
+    const user = await services.isUserLoginValid(username, password);
+
+    console.log("this is the user:", user);
+    if (user.error) {
+      payload.setResponseText(user.error);
+      return response.status(200).json(getResponse(payload));
+    }
+
+    if (user.staffrole) {
+      getServicesQueryResult(
+        services.getDescriptionOfActivityEvents(activityEventName),
+        payload
+      );
+
+      return;
+    }
+    payload.setResponseText("FORBIDDEN");
+    return response.status(200).json(getResponse(payload));
+  }
+
+  if (displayName === INTENT_NAME.evt_location) {
+    const {
+      username,
+      password,
+      activityEventName
+    } = req.body.queryResult.outputContexts[0].parameters;
+
+    const user = await services.isUserLoginValid(username, password);
+
+    console.log("this is the user:", user);
+    if (user.error) {
+      payload.setResponseText(user.error);
+      return response.status(200).json(getResponse(payload));
+    }
+
+    if (user.staffrole) {
+      getServicesQueryResult(
+        services.getLocationOfActivityEvents(activityEventName),
         payload
       );
 

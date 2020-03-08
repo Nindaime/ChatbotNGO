@@ -41,27 +41,35 @@ const getStatusOfActivityEvents = activityEventName => {
     .catch(error => `Error : \n  ${error.message}`);
 };
 
-const getLocationOfActivityEvents = activityEventID => {
+const getLocationOfActivityEvents = activityEventName => {
   return activityevent
     .findOne({
       where: {
-        Activity_EventID: activityEventID
+        Title: activityEventName
       },
       attributes: ["Location"]
     })
-    .then(data => data)
+    .then(data => {
+      return `${activityEventName} will take place at ${
+        data.get({ plain: true }).Location
+      }`;
+    })
     .catch(error => `Error : \n  ${error.message}`);
 };
 
-const getDescriptionOfActivityEvents = activityEventID => {
+const getDescriptionOfActivityEvents = activityEventName => {
   return activityevent
     .findOne({
       where: {
-        Activity_EventID: activityEventID
+        Title: activityEventName
       },
       attributes: ["Description"]
     })
-    .then(data => data)
+    .then(data => {
+      return `Description of ${activityEventName} : ${
+        data.get({ plain: true }).Description
+      }`;
+    })
     .catch(error => `Error : \n  ${error.message}`);
 };
 
