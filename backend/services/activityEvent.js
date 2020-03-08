@@ -3,20 +3,25 @@ import { activityevent, project, sequelize } from "../models";
 const getAllActivityByProject = projectName => {
   return activityevent
     .findAll({
-      where: {
-        "$projects.title$": projectName
-      },
       attributes: ["Type", "Title"],
       include: [
         {
           model: project,
           as: "activity_project",
-          attributes: []
-          // required: true
+          attributes: [],
+          where: {
+            Title: projectName
+          }
         }
       ]
     })
-    .then(data => data)
+    .then(data => {
+      return `Activities lined up for Project:${projectName} are ${data
+        .map(e => e.get({ plain: true }))
+        .map(e => {
+          return `${e.Title} \n`;
+        })}`;
+    })
     .catch(error => `Error : \n  ${error.message}`);
 };
 
@@ -28,7 +33,13 @@ const getStatusOfActivityEvents = activityEventID => {
       },
       attributes: ["Status"]
     })
-    .then(data => data)
+    .then(data => {
+      return `Activities lined up for Project:${projectName} are ${data
+        .map(e => e.get({ plain: true }))
+        .map(e => {
+          return `${e.Title} \n`;
+        })}`;
+    })
     .catch(error => `Error : \n  ${error.message}`);
 };
 

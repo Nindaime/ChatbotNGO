@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         primaryKey: true
       },
-      title: { type: DataTypes.STRING },
+      Title: { type: DataTypes.STRING },
       amountRaised: { type: DataTypes.STRING },
       amountNeeded: { type: DataTypes.STRING },
       projectMangerID: { type: DataTypes.STRING }

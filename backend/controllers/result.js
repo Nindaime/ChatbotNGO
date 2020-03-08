@@ -112,6 +112,8 @@ exports.getResult = async (req, res, next) => {
     } = req.body.queryResult.outputContexts[0].parameters;
 
     const user = await services.isUserLoginValid(username, password);
+
+    console.log("this is the user:", user);
     if (user.error) {
       payload.setResponseText(user.error);
       return response.status(200).json(getResponse(payload));
@@ -125,6 +127,8 @@ exports.getResult = async (req, res, next) => {
 
       return;
     }
+    payload.setResponseText("FORBIDDEN");
+    return response.status(200).json(getResponse(payload));
   }
 
   // next();

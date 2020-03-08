@@ -23,7 +23,6 @@ const isUserLoginValid = (username, password) => {
       ]
     })
     .then(data => {
-      console.log(".>>>>>>>>>", data);
       if (data) {
         const user = data.get({ plain: true });
         console.log("data", user);
