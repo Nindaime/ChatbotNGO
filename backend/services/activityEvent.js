@@ -25,20 +25,18 @@ const getAllActivityByProject = projectName => {
     .catch(error => `Error : \n  ${error.message}`);
 };
 
-const getStatusOfActivityEvents = activityEventID => {
+const getStatusOfActivityEvents = activityEventName => {
   return activityevent
     .findOne({
       where: {
-        Activity_EventID: activityEventID
+        Title: activityEventName
       },
       attributes: ["Status"]
     })
     .then(data => {
-      return `Activities lined up for Project:${projectName} are ${data
-        .map(e => e.get({ plain: true }))
-        .map(e => {
-          return `${e.Title} \n`;
-        })}`;
+      return `Status for ${activityEventName} is ${
+        data.get({ plain: true }).Title
+      }`;
     })
     .catch(error => `Error : \n  ${error.message}`);
 };
