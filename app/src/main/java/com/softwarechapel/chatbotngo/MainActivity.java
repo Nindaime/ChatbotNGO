@@ -4,11 +4,14 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.dialogflow.DetectIntentTexts;
 
@@ -29,8 +32,23 @@ public class MainActivity extends AppCompatActivity {
         // reister adapter with listview
         util = new Util(listView, listViewAdapter);
         editText = (EditText) findViewById(R.id.editText);
+        editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+
+                if (event != null || actionId == EditorInfo.IME_ACTION_SEND){
+
+                    sendMessage(v);
+                    return true;
+
+                }
+
+                return false;
+            }
+        });
 
     }
+
 
     public void sendMessage(View view) {
         String text = editText.getText().toString();

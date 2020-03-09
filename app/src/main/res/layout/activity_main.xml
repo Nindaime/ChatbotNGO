@@ -1,48 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:clipToPadding="false"
     android:focusableInTouchMode="true"
     tools:context=".MainActivity">
 
     <ListView
         android:layout_width="match_parent"
         android:id="@+id/list_view"
-        android:layout_weight="2"
         android:divider="#fff"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="#F5F5F5"
-        />
+        android:layout_above="@+id/inputLayout"
+        android:layout_marginTop="7dp"
+        android:layout_marginBottom="7dp"/>
 
     <LinearLayout
+        android:id="@+id/inputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#fff"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:weightSum="10"
+        android:layout_marginBottom="7dp">
 
         <EditText
             android:id="@+id/editText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_weight="8.5"
             android:ems="10"
             android:hint="@string/input_placeholder"
             android:inputType="text"
             android:paddingHorizontal="10dp"
+            android:imeOptions="actionSend"
+            android:background="@drawable/round_edit_text"
+            android:layout_margin="5dp"/>
 
-            android:text="" />
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1.5"
+            android:layout_height="match_parent">
 
-        <ImageButton
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_gravity="center"
-            android:layout_marginHorizontal="5dp"
-            android:background="@drawable/upload"
-            android:onClick="sendMessage"
-            android:padding="5dp"
-            android:scaleType="fitCenter" />
+            <ImageView
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/upload"
+                android:onClick="sendMessage"
+                android:padding="1dp" />
+
+        </RelativeLayout>
+
     </LinearLayout>
-</LinearLayout>
+
+</RelativeLayout>
