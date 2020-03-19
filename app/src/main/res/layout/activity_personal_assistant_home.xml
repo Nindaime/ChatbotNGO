@@ -37,12 +37,12 @@
                     android:id="@+id/hello_james_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Hello, I am Scarecrow94"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:text="Hello, I am Gozie"
                     android:textColor="#ffffff"
                     android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/school_personal_assistant_text_view"
@@ -316,12 +316,12 @@
                     android:id="@+id/all_rights_reserved"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="All Rights Reserved. Edited by Scarecrow94"
-                    android:textColor="#000000"
-                    android:textSize="12sp"
                     android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"/>
+                    android:layout_marginBottom="5dp"
+                    android:gravity="center"
+                    android:text="All Rights Reserved."
+                    android:textColor="#000000"
+                    android:textSize="12sp" />
 
             </LinearLayout>
 
