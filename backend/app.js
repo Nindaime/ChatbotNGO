@@ -4,7 +4,7 @@ import logger from "morgan";
 const resultRoutes = require("./routes/result");
 
 const app = express();
-const port = 3020;
+const port = 3010;
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
